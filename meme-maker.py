@@ -8,7 +8,7 @@ def read_txt_file(file_path):
 	print "Reading text file..."
 	with open(file_path, 'r') as txt_file:
 		data = txt_file.read().replace('\n', '')
-		print "Text read: " + str(data)
+		print "Text read: '" + data + "'"
 	return data
 
 def paste_pic(im_path,img):
@@ -24,8 +24,8 @@ def place_text(text, font, margin, offset, img):
 
 length = width = 1080
 file_path = raw_input("text file to use: ")
-text = read_txt_file(file_path)
-font = ImageFont.truetype("/Library/Fonts/HelveticaNeue Light.ttf",60)
+text = read_txt_file("sample_text.txt")
+font = ImageFont.truetype("HelveticaNeue Light.ttf",60)
 
 # im = Image.open("img1.jpg")
 # im.resize((100,100))
@@ -36,6 +36,8 @@ offset = 40
 for line in textwrap.wrap(text, width=36):
     draw.text((margin, offset), line, font=font, fill="black")
     offset += font.getsize(line)[1]
+
+image_path = raw_input("image to use: ")
 paste_pic("sample_img.jpg",img)
 draw = ImageDraw.Draw(img)
 
