@@ -31,19 +31,20 @@ def delegate_area(text, pic):
 
 def resize_img(image, new_width):
 	bbox = image.getbbox()
+	print "bbox: " + str(bbox)
 	width  = bbox[2]
-	length = bbox[3]
-	aspect_ratio = float(width)/float(length)
-	print "length: " + str(length)
+	height = bbox[3]
+	aspect_ratio = float(width)/float(height)
+	print "height: " + str(height)
 	print "width:  " + str(width)
 	print "aspect ratio: " + str(aspect_ratio) + ":1"
 
-	new_height = int(new_width * aspect_ratio)
+	new_height = int(new_width / aspect_ratio)
 
 	print "new height: " + str(new_height)
 	print "new width:  " + str(new_width)
 
-	image = image.resize((new_height,new_width))
+	image = image.resize((new_width,new_height))
 	return image
 
 def read_txt_file(file_path):
@@ -55,7 +56,7 @@ def read_txt_file(file_path):
 	return data
 
 def paste_pic(pic,img):
-	pic = resize_img(pic, 700)
+	pic = resize_img(pic, 1000)
 	box = (40,240)
 	img.paste(pic, box=box, mask=None)
 
@@ -88,7 +89,7 @@ def main():
 	place_text(background, text, draw)
 	paste_pic(pic,background)
 
-	text_box = [(0,0),(1079,240)]
+	text_box = [(40,0),(1039,240)]
 	draw.rectangle(text_box,fill=None, outline = 128)
 
 	background.save("meme.jpg")
