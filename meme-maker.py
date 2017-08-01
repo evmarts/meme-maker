@@ -7,6 +7,9 @@ import textwrap
 
 # PIL.ImageDraw.Draw.polygon(xy, fill=None, outline=None)
 
+def delegate_area(text, pic):
+	return null
+
 def resize_img(image, new_width):
 	bbox = image.getbbox()
 	width  = bbox[2]
@@ -23,7 +26,6 @@ def resize_img(image, new_width):
 	print "new width:  " + str(new_width)
 
 	image = image.resize((new_height,new_width))
-
 	return image
 
 def read_txt_file(file_path):
@@ -34,11 +36,8 @@ def read_txt_file(file_path):
 		print "Text read: '" + data + "'"
 	return data
 
-def paste_pic(im_path,img):
-	pic = Image.open(im_path)
+def paste_pic(pic,img):
 	pic = resize_img(pic, 700)
-	# pic = pic.resize((700,700))
-	# resize_img(pic)
 	box = (180,360)
 	img.paste(pic, box=box, mask=None)
 
@@ -60,15 +59,15 @@ def main():
 	file_path = "sample_text.txt" 	## TODO: remove line 
 	image_path = raw_input("image to use: ")
 	image_path = "sample_img.jpg"	## TODO: remove line
-	length = 1080 
-	width = 1080
+	length = width = 1080 
 
-	img = Image.new("RGB", (length,width),(255,255,255))
+	background = Image.new("RGB", (length,width),(255,255,255))
 	text = read_txt_file(file_path)
-	draw = ImageDraw.Draw(img)
-	place_text(img, text, draw)
-	paste_pic(image_path,img)
-	img.save("meme.jpg")
+	pic = Image.open(image_path)
+	draw = ImageDraw.Draw(background)
+	place_text(background, text, draw)
+	paste_pic(pic,background)
+	background.save("meme.jpg")
 
 main()
 
