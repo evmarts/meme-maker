@@ -90,4 +90,3 @@ main()
 # draw = ImageDraw.Draw(img)
 
 # img.save("meme.jpg")
-
