@@ -76,9 +76,9 @@ def paste_pic(pic, canvas, spacing):
 ## TODO: extract functions
 def main():
 	file_path = raw_input("text file to use: ")
-	file_path = "sample_text.txt"	 	## TODO: remove line 
+	# file_path = "sample_text.txt"
 	image_path = raw_input("image to use: ")
-	image_path = "sample_pic_tall.jpg"	## TODO: remove line
+	# image_path = "sample_pic.jpg"
 	width = height = 1080
 	margin = offset = 40
 	px_between_text_and_pic = 57
@@ -101,4 +101,5 @@ def main():
 	background.paste(canvas, box=box, mask=None)
 	background.resize((width,height))
 	background.save("meme.jpg")
+	print "saved meme as: meme.jpg"
 main()
