@@ -8,7 +8,6 @@ from PIL import ImageDraw
 ## returns the contents of the .txt file at file_path as a string
 def read_txt_file(file_path):
 	with open(file_path, 'r') as txt_file:
-		# data=txt_file.readlines() # use to get list
 		data = txt_file.read().replace('\n', '')
 	return data
 
@@ -46,7 +45,7 @@ def place_text(img, text, spacing):
 	draw = ImageDraw.Draw(img)
 	margin = spacing[1]
 	offset = spacing[2]
-	font = ImageFont.truetype("HelveticaNeue Light.ttf",60)
+	font = ImageFont.truetype("utils/HelveticaNeue Light.ttf",60)
 	chars_per_line = float(36)
 	for line in textwrap.wrap(text, width=chars_per_line):
 		draw.text((margin, offset), line, font=font, fill="black")
@@ -73,17 +72,13 @@ def paste_pic(pic, canvas, spacing):
 	box = (margin, margin + text_bbox_height + px_between_text_and_pic)
 	canvas.paste(pic, box=box, mask=None)
 
-## TODO: extract functions
 def main():
-	file_path = raw_input("text file to use: ")
-	# file_path = "sample_text.txt"
-	image_path = raw_input("image to use: ")
-	# image_path = "sample_pic.jpg"
+	image_path = "in/" + raw_input("path of image to use: in/")
+	text = raw_input("enter a caption: ")
 	width = height = 1080
 	margin = offset = 40
 	px_between_text_and_pic = 57
 	spacing = [px_between_text_and_pic, margin, offset]
-	text = read_txt_file(file_path)
 	pic = Image.open(image_path)
 	text_bbox = calculate_text_bbox(text)
 	text_bbox_width = text_bbox[0]
@@ -100,6 +95,6 @@ def main():
 	box = [abs((content_bbox[0] - max_demision))/2, abs((content_bbox[1] - max_demision)/2)]
 	background.paste(canvas, box=box, mask=None)
 	background.resize((width,height))
-	background.save("meme.jpg")
-	print "saved meme as: meme.jpg"
+	background.save("out/meme.png")
+	print "saved image as: meme.png"
 main()
