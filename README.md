@@ -46,9 +46,7 @@ When you call shotgun but end up in the back
 ```
 <img src="./figures/img.jpg" width="256px" alt="">
 
-where the image is stored in the  ```in/``` directory.
-
-We run the Python script: 
+Once the image is stored in the  ```in/``` directory, we can run the Python script: 
 
 ~~~
 $ python meme-maker.py
@@ -57,7 +55,7 @@ enter a caption: when you call shotgun but end up in the back
 saved image as: meme.png
 ~~~
 
-and the image *meme.jpg* is stored in the ```out/``` directory:
+and the image *meme.jpg* will be stored in the ```out/``` directory:
 
 <img src="./figures/twitter_screencap_meme.jpg" width="256px" alt="">
 
